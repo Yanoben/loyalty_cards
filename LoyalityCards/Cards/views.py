@@ -1,13 +1,19 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Card
+from .forms import Gen_Card_Form
 
 
-def index(request):
-    return render(request, 'home.html')
-
-
-def generator_card():
-    pass
+def generator_card(request):
+    form = Gen_Card_Form()
+    if request.method == 'GET':
+        form = Gen_Card_Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        context = {'form': form}
+        return render(request, 'gen_card.html', context)
+    else:
+        return redirect('')
 
 
 def get_all_cards(request):
