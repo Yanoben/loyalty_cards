@@ -4,8 +4,8 @@ from .views import (generator_card, get_all_cards, get_card, filter_card,
 
 
 urlpatterns = [
-    path('', generator_card, name='gen_card'),
-    path('get-all-card/', get_all_cards, name='get_all_cards'),
+    path('', get_all_cards, name='get_all_cards'),
+    path('gen-card/', generator_card, name='gen_card'),
     path('<int:card_id>/', get_card, name='get_card'),
     path('filter/', filter_card, name='filter'),
     path('change-status/', change_status_card, name='change_status'),

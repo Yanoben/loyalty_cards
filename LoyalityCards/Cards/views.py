@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Card
-from .forms import Gen_Card_Form
+from .forms import Gen_Card_Form, Get_Cards
 
 
 def generator_card(request):
@@ -18,7 +18,10 @@ def generator_card(request):
 
 def get_all_cards(request):
     cards = Card.objects.all()
-    return render('page_cards.html', cards)
+    form = Get_Cards()
+    context = {'cards': cards,
+               'form': form}
+    return render(request, 'page_cards.html', context)
 
 
 def get_card(request, card_id):
