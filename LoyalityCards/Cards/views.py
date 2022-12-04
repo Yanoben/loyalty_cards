@@ -2,6 +2,10 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .models import Card
 
 
+def index(request):
+    return render(request, 'home.html')
+
+
 def generator_card():
     pass
 
