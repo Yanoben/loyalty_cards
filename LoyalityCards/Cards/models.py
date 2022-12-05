@@ -3,7 +3,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Card(models.Model):
-    card_count = models.IntegerField()
     card_series = models.CharField(max_length=3)
     card_number = models.CharField(max_length=16)
     card_released = models.DateTimeField()
