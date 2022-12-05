@@ -37,8 +37,16 @@ def filter_card():
 
 
 def change_status_card(request, card_id):
+    form = Get_Cards()
     card = get_object_or_404(Card, pk=card_id)
-    return render(request, 'page_cards.html')
+    context = {'card': card,
+               'form': form}
+    if card.card_status:
+        card = Card.objects.filter(pk=card_id).update(card_status=False)
+        return render(request, 'card.html', context=context)
+    else:
+        card = Card.objects.filter(pk=card_id).update(card_status=True)
+        return render(request, 'card.html', context=context)
 
 
 def delete_card(request, card_id):

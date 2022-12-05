@@ -8,6 +8,7 @@ urlpatterns = [
     path('gen-card/', generator_card, name='gen_card'),
     path('<int:card_id>/', get_card, name='get_card'),
     path('filter/', filter_card, name='filter'),
-    path('change-status/', change_status_card, name='change_status'),
+    path('<int:card_id>/change-status/',
+         change_status_card, name='change_status'),
     path('<int:card_id>/delete/', delete_card, name="delete_card"),
 ]

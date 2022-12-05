@@ -12,6 +12,11 @@
     {% else %}
     <p>Card status: Deactive</p>
     {% endif %}
+    <button type="button">
+        <a href="{% url 'change_status' card.id %}">
+            Changes status Card
+        </a>
+    </button>
     <h2>History payment: </h2>
     <button type="button">
         <a href="{% url 'delete_card' card.id %}">
