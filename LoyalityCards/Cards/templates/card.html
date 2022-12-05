@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container ">
+    <h1>Card {{card.id}}</h1>
+    {% csrf_token %}
+    <p>Card series: {{card.card_series}}</p>
+    <p>Card number: {{card.card_number}}</p>
+    {% if card.card_status%}
+    <p>Card status: Active</p>
+    {% else %}
+    <p>Card status: Deactive</p>
+    {% endif %}
+    <h2>History payment: </h2>
+</div>
+{% endblock %}

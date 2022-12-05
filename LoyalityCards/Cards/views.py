@@ -25,9 +25,11 @@ def get_all_cards(request):
 
 
 def get_card(request, card_id):
+    form = Get_Cards()
     card = get_object_or_404(Card, pk=card_id)
-    context = {'card': card}
-    return render('card.html', card_id=card_id, context=context)
+    context = {'card': card,
+               'form': form}
+    return render(request, 'card.html', context=context)
 
 
 def filter_card():

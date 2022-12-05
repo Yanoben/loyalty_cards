@@ -11,6 +11,6 @@ class Gen_Card_Form(ModelForm):
 class Get_Cards(ModelForm):
     class Meta:
         model = Card
-        fields = ['card_series', 'card_number',
+        fields = ['id', 'card_series', 'card_number',
                   'card_released', 'card_valid_date',
                   'card_status']
