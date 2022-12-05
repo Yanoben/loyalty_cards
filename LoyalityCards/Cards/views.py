@@ -33,6 +33,7 @@ def get_card(request, card_id):
 
 
 def filter_card():
+    # todo
     pass
 
 
