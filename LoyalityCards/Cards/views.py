@@ -36,11 +36,12 @@ def filter_card():
     pass
 
 
-def change_status_card():
-    pass
+def change_status_card(request, card_id):
+    card = get_object_or_404(Card, pk=card_id)
+    return render(request, 'page_cards.html')
 
 
 def delete_card(request, card_id):
-    card = get_object_or_404(Card, card_id=card_id)
+    card = get_object_or_404(Card, pk=card_id)
     card.delete()
-    return render(request, 'page_cards.html')
+    return redirect(request, 'page_cards.html')

@@ -3,18 +3,22 @@
 {% block content %}
 {% load static %}
 <div class="container ">
-    <h1>Cards</h1>
+    <h1>Cards</h1><br>
     {% csrf_token %}
     {% for c in cards%}
-    {{c.card_series}}
-    <br>
-    {{c.card_number}}
-    <br>
-    {{c.card_released}}
-    <br>
-    {{c.card_valid_date}}
-    <br>{{c.card_status}}
-    <br><br>
+    <div>
+        <a href="{% url 'get_card' c.id %}">
+            <h3>Card {{c.id}}</h3>
+        </a>
+        {{c.card_series}}
+        <br>
+        {{c.card_number}}
+        <br>
+        {{c.card_released}}
+        <br>
+        {{c.card_valid_date}}
+        <br>{{c.card_status}}
+    </div><br>
     {% endfor %}
 </div>
 {% endblock %}

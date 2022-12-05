@@ -13,5 +13,10 @@
     <p>Card status: Deactive</p>
     {% endif %}
     <h2>History payment: </h2>
+    <button type="button">
+        <a href="{% url 'delete_card' card.id %}">
+            Delete Card
+        </a>
+    </button>
 </div>
 {% endblock %}
