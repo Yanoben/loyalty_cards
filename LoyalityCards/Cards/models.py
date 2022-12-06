@@ -1,12 +1,27 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils import timezone
+
+
+VISA = 'Visa'
+MASTERCARD = 'MasterCard'
+CHOICES = [
+    (VISA, 4),
+    (MASTERCARD, 5),
+]
+
+CHOICE_VD = ((12, 'Card for 12'), (6, 'Card for 6'), (1, 'Card for 12'))
 
 
 class Card(models.Model):
-    card_series = models.CharField(max_length=3)
+    series = models.CharField(
+        max_length=10,
+        choices=CHOICES,
+        default=VISA,
+    )
     card_number = models.CharField(max_length=16)
-    card_released = models.DateTimeField()
-    card_valid_date = models.DateTimeField()
-    card_use_date = models.DateTimeField()
-    card_balance = models.IntegerField()
-    card_status = models.BooleanField()
+    card_released = models.DateTimeField(default=timezone.now)
+    card_valid_date = models.IntegerField(choices=CHOICE_VD)
+
+    card_use_date = models.DateTimeField(default=timezone.now)
+    card_balance = models.IntegerField(default=0)
+    card_status = models.BooleanField(default=False)

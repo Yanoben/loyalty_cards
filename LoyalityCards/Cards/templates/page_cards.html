@@ -13,14 +13,15 @@
         <a href="{% url 'get_card' c.id %}">
             <h3>Card {{c.id}}</h3>
         </a>
-        {{c.card_series}}
-        <br>
-        {{c.card_number}}
-        <br>
-        {{c.card_released}}
-        <br>
-        {{c.card_valid_date}}
-        <br>{{c.card_status}}
+        <p>Card series: {{c.series}}</p>
+        <p>Card number: {{c.card_number}}</p>
+        <p>Card released date: {{c.card_released}}</p>
+        <p>Valid date Card: {{c.card_valid_date}} month</p>
+        {% if card.card_status%}
+        <p>Card status: Active</p>
+        {% else %}
+        <p>Card status: Deactive</p>
+        {% endif %}
     </div><br>
     {% endfor %}
 </div>

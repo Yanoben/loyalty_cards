@@ -1,19 +1,36 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Card
 from .forms import Gen_Card_Form, Get_Cards
+from random import randint
+
+
+def random_with_N_digits(n):
+    range_start = 10**(n-1)
+    range_end = (10**n)-1
+    return randint(range_start, range_end)
 
 
 def generator_card(request):
+    card = Card()
     form = Gen_Card_Form()
-    if request.method == 'GET':
-        form = Gen_Card_Form(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        context = {'form': form}
-        return render(request, 'gen_card.html', context)
-    else:
-        return redirect('')
+    context = {'form': form}
+    number = random_with_N_digits(15)
+    if request.method == 'POST':
+        count = request.POST.get('count')
+        card_valid_date = request.POST.get('card_valid_date')
+        series = request.POST.get('series')
+        if series == 'Visa':
+            number = '4' + str(number)
+        else:
+            number = '5' + str(number)
+        for _ in range(int(count)):
+            card = Card(
+                series=series,
+                card_number=number,
+                card_valid_date=card_valid_date)
+            card.save()
+        return redirect(request, 'page_cards.html')
+    return render(request, 'gen_card.html', context)
 
 
 def get_all_cards(request):

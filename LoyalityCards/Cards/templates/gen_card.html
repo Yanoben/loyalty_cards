@@ -7,9 +7,10 @@
         <div class="col-md-6">
             <h1>Generator Cards</h1>
             <div class="card card-body">
-                <form action="" method="POST">
+                <form action="{% url 'gen_card' %}" method="post">
                     {% csrf_token %}
                     {{form.as_p}}
+                    <input type='number' name="count" />
                     <br>
                     <input type="submit" name="Submit">
                 </form>
