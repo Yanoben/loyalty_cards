@@ -10,8 +10,15 @@ def random_with_N_digits(n):
     return randint(range_start, range_end)
 
 
+def get_all_cards(request):
+    cards = Card.objects.all()
+    form = Get_Cards()
+    context = {'cards': cards,
+               'form': form}
+    return render(request, 'page_cards.html', context)
+
+
 def generator_card(request):
-    card = Card()
     form = Gen_Card_Form()
     context = {'form': form}
     number = random_with_N_digits(15)
@@ -29,16 +36,8 @@ def generator_card(request):
                 card_number=number,
                 card_valid_date=card_valid_date)
             card.save()
-        return redirect(request, 'page_cards.html')
+        return redirect('get_all_cards')
     return render(request, 'gen_card.html', context)
-
-
-def get_all_cards(request):
-    cards = Card.objects.all()
-    form = Get_Cards()
-    context = {'cards': cards,
-               'form': form}
-    return render(request, 'page_cards.html', context)
 
 
 def get_card(request, card_id):
