@@ -19,4 +19,6 @@ To get this project up and running locally on your computer follow the following
 
 4. Function:
 - Generator to Card go '/gen-card/'
-- Change Status to Card go '<int:card_id>change-status/'
+- Change Status to Card go 'card_id/change-status/'
+- Profil Card '/card_id/'
+- Delete to Card go '/card_id/delete/'
